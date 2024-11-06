@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: my-job-final5
+spec:
+  template:
+    spec:
+      containers:
+      - name: html-container
+        image: busybox
+        command: ["/bin/sh", "-c"]
+        args:
+          - cat /usr/share/nginx/html/index.html
+        volumeMounts:
+          - mountPath: /usr/share/nginx/html
+            name: web-content
+      restartPolicy: OnFailure
+      volumes:
+        - name: web-content
+          persistentVolumeClaim:
+            claimName: my-pvc
+

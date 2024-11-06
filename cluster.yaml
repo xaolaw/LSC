@@ -1,0 +1,16 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: my-cluster2
+  region: us-east-1
+
+iam:
+  serviceRoleARN: arn:aws:iam::255541145577:role/LabRole  # Specify the ARN of LabRole here
+
+nodeGroups:
+  - name: ng-1
+    instanceType: t3.medium
+    desiredCapacity: 2
+    iam:
+      instanceRoleARN: arn:aws:iam::255541145577:role/LabRole  # Specify the ARN of LabRole here for the nodes
